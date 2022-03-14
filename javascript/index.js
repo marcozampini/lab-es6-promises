@@ -83,3 +83,18 @@ obtainInstruction('steak', 0).then((step0) => {
     })
   })
 })
+
+// Iteration 3 using async/await
+// Using promises with the async and await syntax print the directions to make Brussels Sprouts in the correct order.
+// You will need the function obtainInstruction which returns a pending Promise.
+async function makeBroccoli() {
+  let step
+  for (let i = 0; i < broccoli.length; i++) {
+    step = await obtainInstruction('broccoli', i)
+    document.querySelector('#broccoli').innerHTML += `<li>${step}</li>`
+  }
+  document.querySelector('#broccoli').innerHTML += `<li>Broccoli is ready!</li>`
+}
+makeBroccoli()
+// Bonus 2 - Promise all
+// ...

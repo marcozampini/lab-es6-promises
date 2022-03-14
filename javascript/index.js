@@ -90,14 +90,31 @@ obtainInstruction('steak', 0).then((step0) => {
 // Using promises with the async and await syntax print the directions to make Brussels Sprouts in the correct order.
 // You will need the function obtainInstruction which returns a pending Promise.
 async function makeBroccoli() {
+  const broccoliElement = document.querySelector('#broccoli')
   let step
   for (let i = 0; i < broccoli.length; i++) {
     step = await obtainInstruction('broccoli', i)
-    document.querySelector('#broccoli').innerHTML += `<li>${step}</li>`
+    broccoliElement.innerHTML += `<li>${step}</li>`
   }
-  document.querySelector('#broccoli').innerHTML += `<li>Broccoli is ready!</li>`
+  broccoliElement.innerHTML += `<li>Broccoli is ready!</li>`
   document.querySelector('#broccoliImg').removeAttribute('hidden')
 }
 makeBroccoli()
+
 // Bonus 2 - Promise all
-// ...
+
+function makeBrusselsSprouts() {
+  const brusselsSproutsElement = document.querySelector('#brusselsSprouts')
+  let prom = []
+  for (let i = 0; i < brusselsSprouts.length; i++) {
+    prom[i] = obtainInstruction('brusselsSprouts', i)
+  }
+  Promise.all(prom).then((values) => {
+    for (const step of values) {
+      brusselsSproutsElement.innerHTML += `<li>${step}</li>`
+    }
+    brusselsSproutsElement.innerHTML += `<li>Brussels sprouts are ready!</li>`
+    document.querySelector('#brusselsSproutsImg').removeAttribute('hidden')
+  })
+}
+makeBrusselsSprouts()
